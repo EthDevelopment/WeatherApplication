@@ -55,8 +55,8 @@ namespace WeatherApplication.Services
             return weatherData?.List?.Select(item => new WeatherForecast
             {
                 Date = DateTimeOffset.FromUnixTimeSeconds(item.Dt).DateTime,
-                TemperatureC = (int)(item.Main.Temp - 273.15), // Convert Kelvin to Celsius
-                TemperatureF = (int)((item.Main.Temp - 273.15) * 9 / 5 + 32), // Convert Celsius to Fahrenheit
+                TemperatureC = (int)(item.Main.Temp - 273.15),
+                TemperatureF = (int)((item.Main.Temp - 273.15) * 9 / 5 + 32),
                 Summary = item.Weather.FirstOrDefault()?.Description
             }) ?? Enumerable.Empty<WeatherForecast>();
         }
