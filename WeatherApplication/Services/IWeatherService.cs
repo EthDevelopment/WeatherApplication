@@ -1,5 +1,4 @@
-﻿// Update the IWeatherService interface
-using WeatherApplication;
+﻿using WeatherApplication;
 
 public interface IWeatherService
 {

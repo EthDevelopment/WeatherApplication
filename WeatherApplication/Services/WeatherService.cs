@@ -33,7 +33,8 @@ namespace WeatherApplication.Services
                     string json = await response.Content.ReadAsStringAsync();
                     var weatherData = JsonConvert.DeserializeObject<OpenWeatherMapResponse>(json);
 
-                    return MapToWeatherForecasts(weatherData);
+                    // Pass the city name to MapToWeatherForecasts
+                    return MapToWeatherForecasts(weatherData, city);
                 }
                 else
                 {
@@ -50,14 +51,15 @@ namespace WeatherApplication.Services
             return new List<WeatherForecast>();
         }
 
-        private IEnumerable<WeatherForecast> MapToWeatherForecasts(OpenWeatherMapResponse weatherData)
+        private IEnumerable<WeatherForecast> MapToWeatherForecasts(OpenWeatherMapResponse weatherData, string city)
         {
             return weatherData?.List?.Select(item => new WeatherForecast
             {
                 Date = DateTimeOffset.FromUnixTimeSeconds(item.Dt).DateTime,
                 TemperatureC = (int)(item.Main.Temp - 273.15),
                 TemperatureF = (int)((item.Main.Temp - 273.15) * 9 / 5 + 32),
-                Summary = item.Weather.FirstOrDefault()?.Description
+                Summary = item.Weather.FirstOrDefault()?.Description,
+                CityName = city
             }) ?? Enumerable.Empty<WeatherForecast>();
         }
     }
