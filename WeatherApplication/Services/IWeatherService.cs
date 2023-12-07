@@ -1,6 +1,10 @@
-﻿using WeatherApplication;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
-public interface IWeatherService
+namespace WeatherApplication.Services
 {
-    IEnumerable<WeatherForecast> GetWeatherForecasts();
+    public interface IWeatherService
+    {
+        Task<IEnumerable<WeatherForecast>> GetWeatherForecasts(double latitude, double longitude);
+    }
 }
