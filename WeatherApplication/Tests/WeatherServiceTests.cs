@@ -4,13 +4,12 @@ using Xunit;
 public class WeatherServiceTests
 {
     [Fact]
-    public void GetWeatherForecasts_ReturnsCorrectNumberOfForecasts()
+    public async Task GetWeatherForecasts_ReturnsCorrectNumberOfForecasts()
     {
         var weatherService = new WeatherService();
 
-        var forecasts = weatherService.GetWeatherForecasts();
+        var forecasts = await weatherService.GetWeatherForecasts();
 
         Assert.Equal(5, forecasts.Count());
     }
-
 }

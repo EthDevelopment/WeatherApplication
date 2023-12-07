@@ -1,6 +1,7 @@
-﻿using WeatherApplication;
+﻿// Update the IWeatherService interface
+using WeatherApplication;
 
 public interface IWeatherService
 {
-    IEnumerable<WeatherForecast> GetWeatherForecasts();
+    Task<IEnumerable<WeatherForecast>> GetWeatherForecasts();
 }
