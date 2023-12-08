@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Xml.Linq;
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using WeatherApplication;
+using WeatherApplication.Services;  // Add this line
 
 [ApiController]
 [Route("[controller]")]
@@ -18,6 +21,10 @@ public class WeatherForecastController : ControllerBase
     [HttpGet(Name = "GetWeatherForecast")]
     public async Task<IEnumerable<WeatherForecast>> Get()
     {
-        return await _weatherService.GetWeatherForecasts();
+        // Replace 'YourCityName' with the desired city name
+        string city = "Chicago";
+
+        return await _weatherService.GetWeatherForecasts(city);
     }
+
 }

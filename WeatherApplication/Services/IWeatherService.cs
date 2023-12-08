@@ -1,6 +1,12 @@
-﻿using WeatherApplication;
+﻿// IWeatherService.cs
 
-public interface IWeatherService
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace WeatherApplication.Services
 {
-    Task<IEnumerable<WeatherForecast>> GetWeatherForecasts();
+    public interface IWeatherService
+    {
+        Task<IEnumerable<WeatherForecast>> GetWeatherForecasts(string city);
+    }
 }

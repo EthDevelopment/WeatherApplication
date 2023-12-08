@@ -1,4 +1,5 @@
-﻿// File: WeatherService.cs
+﻿// WeatherService.cs
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,10 @@ namespace WeatherApplication.Services
             this.httpClient = new HttpClient();
         }
 
-        public async Task<IEnumerable<WeatherForecast>> GetWeatherForecasts()
+        // Implement the IWeatherService interface
+        public async Task<IEnumerable<WeatherForecast>> GetWeatherForecasts(string city)
         {
             string apiUrl = "https://api.openweathermap.org/data/2.5/forecast";
-            string city = "Manchester"; // Replace with the desired city name
             string url = $"{apiUrl}?q={city}&appid={apiKey}";
 
             try
@@ -66,6 +67,5 @@ namespace WeatherApplication.Services
                 CityName = city
             }) ?? Enumerable.Empty<WeatherForecast>();
         }
-
     }
 }
