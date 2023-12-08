@@ -17,6 +17,17 @@ public class Program
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "Weather API", Version = "v1" });
         });
 
+        // Enable CORS
+        builder.Services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            });
+        });
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
@@ -27,6 +38,10 @@ public class Program
         }
 
         app.UseAuthorization();
+
+        // Enable CORS
+        app.UseCors();
+
         app.MapControllers();
         app.Run();
     }
